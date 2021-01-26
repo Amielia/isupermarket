@@ -1,39 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:isupermarket/models/promotion.dart';
+import 'package:isupermarket/models/products.dart';
 import 'package:isupermarket/services/db_query.dart';
 
-class PromotionDetail extends StatefulWidget {
-  PromotionDetail({this.uid});
+class GroceryDetail extends StatefulWidget {
+  GroceryDetail({this.userId, this.productId});
 
-  final String uid;
+  final String userId, productId;
 
   @override
-  _PromotionDetailState createState() => _PromotionDetailState();
+  _GroceryDetailstate createState() => _GroceryDetailstate();
 }
 
-class _PromotionDetailState extends State<PromotionDetail> {
+class _GroceryDetailstate extends State<GroceryDetail> {
   DBQuery _firebaseServices = DBQuery();
   //int _productQuantity = 1;
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: _firebaseServices.promotiondetails(widget.uid),
+      future: _firebaseServices.groceryDetails(widget.userId),
       builder: (context, snapshot) {
-        Promotion _promotiondetails = snapshot.data;
+        Products _groceryDetails = snapshot.data;
         if (snapshot.hasError || !snapshot.hasData) {
           return Container(
             color: Colors.white,
             child: SpinKitRing(
-              color: Colors.deepPurple,
+              color: Colors.deepOrange,
             ),
           );
         } else {
           return Scaffold(
-            backgroundColor: Colors.deepPurple[100],
+            backgroundColor: Colors.white,
             appBar: AppBar(
-              title: Text('Promotion Details'),
+              title: Text('Grocery Details'),
             ),
             body: Container(
               child: SingleChildScrollView(
@@ -47,7 +47,7 @@ class _PromotionDetailState extends State<PromotionDetail> {
                         height: 250.0,
                         width: 250.0,
                         child: Image(
-                          image: NetworkImage(_promotiondetails.url),
+                          image: NetworkImage(_groceryDetails.url),
                         ),
                       ),
                     ),
@@ -64,7 +64,7 @@ class _PromotionDetailState extends State<PromotionDetail> {
                             child: Align(
                               alignment: Alignment.center,
                               child: Text(
-                                _promotiondetails.name,
+                                _groceryDetails.name,
                                 style: TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 19.0,
@@ -82,9 +82,8 @@ class _PromotionDetailState extends State<PromotionDetail> {
                               top: MediaQuery.of(context).size.height / 50,
                             ),
                             child: Text(
-                              _promotiondetails.price
-                                  .toStringAsFixed(2)
-                                  .toString(),
+                              'Category: ' +
+                                  _groceryDetails.category.toString(),
                               style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 14.0,
@@ -98,8 +97,25 @@ class _PromotionDetailState extends State<PromotionDetail> {
                               top: MediaQuery.of(context).size.height / 50,
                             ),
                             child: Text(
-                              'description : ' +
-                                  _promotiondetails.description.toString(),
+                              'Price : ' +
+                                  _groceryDetails.price
+                                      .toStringAsFixed(2)
+                                      .toString(),
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 14.0,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: MediaQuery.of(context).size.width / 20,
+                              right: MediaQuery.of(context).size.width / 20,
+                              top: MediaQuery.of(context).size.height / 50,
+                            ),
+                            child: Text(
+                              'Description : ' +
+                                  _groceryDetails.description.toString(),
                               style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 14.0,
@@ -114,7 +130,7 @@ class _PromotionDetailState extends State<PromotionDetail> {
                           //     ),
                           //     child: Text(
                           //       'Shelves : ' +
-                          //           _promotiondetails.shelves.toString(),
+                          //           _GroceryDetails.shelves.toString(),
                           //       style: TextStyle(
                           //         fontWeight: FontWeight.w700,
                           //         fontSize: 14.0,
@@ -128,7 +144,7 @@ class _PromotionDetailState extends State<PromotionDetail> {
                           //     ),
                           //     child: Text(
                           //       'Synopsis : ' +
-                          //           _promotiondetails.synopsis.toString(),
+                          //           _GroceryDetails.synopsis.toString(),
                           //       textAlign: TextAlign.justify,
                           //       style: TextStyle(
                           //         fontWeight: FontWeight.w700,

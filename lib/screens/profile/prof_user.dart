@@ -103,6 +103,7 @@ class _UserProfileState extends State<UserProfile> {
                     children: <Widget>[
                       //TODO: Add image
                       CircleAvatar(
+                        backgroundImage: AssetImage('assets/images/icon.png'),
                         radius: 40.0,
                       ),
                       SizedBox(

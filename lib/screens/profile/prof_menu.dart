@@ -31,6 +31,7 @@ class ProfileMenu extends StatelessWidget {
                 SizedBox(
                   height: 15.0,
                 ),
+
                 CardProfile(
                   title: 'My Profile',
                   data: '',

@@ -32,7 +32,7 @@ class CardProduct extends StatelessWidget {
                 children: <Widget>[
                   Text(name),
                   SizedBox(height: 10.0),
-                  Text('RM ' + price.toStringAsFixed(2)),
+                  // Text('RM ' + price.toStringAsFixed(2)),
                 ],
               ),
             ),

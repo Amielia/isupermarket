@@ -5,9 +5,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_beacon/flutter_beacon.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:isupermarket/login.dart';
+import 'package:isupermarket/screens/products/groceries/grocerieslist.dart';
+import 'package:isupermarket/screens/products/personalcare/personalcarelist.dart';
 import 'package:isupermarket/services/db_query.dart';
 import 'package:isupermarket/models/beacons.dart';
-import 'package:isupermarket/screens/promotion/promotionlist.dart';
+
+// import 'package:isupermarket/screens/products/personalcare/plpersonalcare.dart';
 // import 'package:smart_library/models/beacons.dart';
 // import 'package:smart_library/screens/authenticate/forgot_password.dart';
 // import 'package:smart_library/screens/book/book_list1.dart';
@@ -296,7 +299,7 @@ class _BeaconWidgetState extends State<BeaconWidget>
                                                 Text(
                                                   '${beacon.accuracy}',
                                                   style: TextStyle(
-                                                    fontSize: 80.0,
+                                                    fontSize: 30.0,
                                                     color: Colors.deepOrange,
                                                   ),
                                                 ),
@@ -305,27 +308,27 @@ class _BeaconWidgetState extends State<BeaconWidget>
                                             ),
                                           ),
                                           Text(
-                                            _beaconLists.name,
-                                            style: TextStyle(fontSize: 30.0),
+                                            _beaconLists.beaconName,
+                                            style: TextStyle(fontSize: 20.0),
                                           )
                                         ],
                                       )),
                                       onTap: () {
-                                        String x = _beaconLists.beaconId;
+                                        String x = _beaconLists.beaconName;
                                         if (x ==
-                                            'b9407f30-f5f8-466e-aff9-25556b57fe6a') {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) => Login()),
-                                          );
-                                        } else if (x ==
-                                            'b9407f30-f5f8-466e-aff9-25556b57fe6b') {
+                                            'Personal Care') {
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    PromotionList()),
+                                                    PcList()),
+                                          );
+                                        } else if (x ==
+                                            'Groceries') {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => GroceryList()),
                                           );
                                           // } else if (x == 'Level 3') {
                                           //   Navigator.push(

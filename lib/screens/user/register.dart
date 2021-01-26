@@ -31,7 +31,7 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Form(
             key: _formKey,
             child: Column(
@@ -40,7 +40,7 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
                 Text(
                   'Register',
                   style: TextStyle(
-                    fontSize: 30.0,
+                    fontSize: 20.0,
                   ),
                 ),
                 SizedBox(
@@ -117,7 +117,7 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
                   height: 10.0,
                 ),
                 RoundedButton(
-                  colour: Colors.lightBlueAccent,
+                  colour: Colors.deepOrange[300],
                   title: 'Register',
                   onPressed: () async {
                     if (_formKey.currentState.validate() &&

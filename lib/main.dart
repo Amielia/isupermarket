@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:isupermarket/screens/home.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:isupermarket/models/users.dart';
@@ -20,9 +21,14 @@ class isupermarket extends StatelessWidget {
         title: 'isupermarket',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.deepPurple,
+          primarySwatch: Colors.deepOrange,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
+        // initialRoute: '/home',
+        // routes: {
+        //   '/home': (context) => Home(),
+        //   '/existing-cards': (context) => ExistingCardsPage()
+        // }
         home: Wrapper(),
       ),
     );

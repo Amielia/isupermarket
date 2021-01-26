@@ -1,26 +1,27 @@
 import 'package:isupermarket/components/card_product.dart';
-import 'package:isupermarket/models/promotion.dart';
-import 'package:isupermarket/screens/promotion/promotiondetails.dart';
+import 'package:isupermarket/models/products.dart';
+import 'package:isupermarket/screens/products/groceries/groceriesdetails.dart';
 import 'package:isupermarket/services/db_query.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:isupermarket/screens/products/groceries/promotiongr.dart';
 
-class PromotionList extends StatefulWidget {
-  PromotionList({this.uid, String userId});
+class GroceryList extends StatefulWidget {
+  GroceryList({this.uid, String userId});
 
   final String uid;
 
   @override
-  _PromotionListSate createState() => _PromotionListSate();
+  _GroceryListSate createState() => _GroceryListSate();
 }
 
-class _PromotionListSate extends State<PromotionList> {
+class _GroceryListSate extends State<GroceryList> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: DBQuery().promotionlist(widget.uid),
+      future: DBQuery().groceryList(widget.uid),
       builder: (context, snapshot) {
-        List<Promotion> _promotionlist = snapshot.data;
+        List<Products> _groceryList = snapshot.data;
         if (snapshot.hasError || !snapshot.hasData) {
           return Container(
             color: Colors.white,
@@ -32,7 +33,25 @@ class _PromotionListSate extends State<PromotionList> {
           return Scaffold(
             backgroundColor: Colors.deepOrange[100],
             appBar: AppBar(
-              title: Text('Promotion List'),
+              title: Text('Grocery'),
+              actions: <Widget>[
+                // Text(
+                //   'Promotion',
+                //   textAlign: TextAlign.start,
+                // ),
+                IconButton(
+                  icon: Icon(Icons.notifications_active_rounded),
+                  color: Colors.white,
+                  onPressed: () async {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PromotiongrList(uid: widget.uid),
+                      ),
+                    );
+                  },
+                ),
+              ],
             ),
             body: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -40,19 +59,19 @@ class _PromotionListSate extends State<PromotionList> {
                 childAspectRatio: MediaQuery.of(context).size.width /
                     (MediaQuery.of(context).size.height / 1.5),
               ),
-              itemCount: _promotionlist.length,
+              itemCount: _groceryList.length,
               padding: EdgeInsets.all(5.0),
               itemBuilder: (context, index) {
                 return CardProduct(
-                  name: _promotionlist[index].name,
-                  price: _promotionlist[index].price,
-                  url: _promotionlist[index].url,
+                  name: _groceryList[index].name,
+                  price: _groceryList[index].price,
+                  url: _groceryList[index].url,
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => PromotionDetail(
-                          uid: _promotionlist[index].uid,
+                        builder: (context) => GroceryDetail(
+                          userId: _groceryList[index].uid,
                           // userId: widget.userId,
                         ),
                       ),
