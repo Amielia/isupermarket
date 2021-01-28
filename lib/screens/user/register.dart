@@ -29,138 +29,143 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
   Widget build(BuildContext context) {
     //TODO: Turunkan interface
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+        child: Center(
           child: Form(
             key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  'Register',
-                  style: TextStyle(
-                    fontSize: 20.0,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'Register',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 8.0,
-                ),
-                TextFormField(
-                  textAlign: TextAlign.center,
-                  validator: (val) => val.isEmpty ? 'Enter an name' : null,
-                  onChanged: (value) {
-                    name = value;
-                  },
-                  decoration: kTextFieldDecoration.copyWith(
-                    hintText: 'Enter your name',
+                  SizedBox(
+                    height: 8.0,
                   ),
-                ),
-                SizedBox(
-                  height: 8.0,
-                ),
-                TextFormField(
-                  textAlign: TextAlign.center,
-                  validator: (val) => val.length < 6 ? 'Enter an email' : null,
-                  onChanged: (value) {
-                    email = value;
-                  },
-                  decoration: kTextFieldDecoration.copyWith(
-                    hintText: 'Enter your email',
+                  TextFormField(
+                    textAlign: TextAlign.center,
+                    validator: (val) => val.isEmpty ? 'Enter an name' : null,
+                    onChanged: (value) {
+                      name = value;
+                    },
+                    decoration: kTextFieldDecoration.copyWith(
+                      hintText: 'Enter your name',
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 10.0,
-                ),
-                TextFormField(
-                  textAlign: TextAlign.center,
-                  validator: (val) =>
-                      val.length < 10 ? 'Enter a phone number' : null,
-                  onChanged: (value) {
-                    phoneNum = value;
-                  },
-                  decoration: kTextFieldDecoration.copyWith(
-                    hintText: 'Enter your phone number',
+                  SizedBox(
+                    height: 8.0,
                   ),
-                ),
-                SizedBox(
-                  height: 10.0,
-                ),
-                TextFormField(
-                  obscureText: true,
-                  textAlign: TextAlign.center,
-                  validator: (val) =>
-                      val.length < 6 ? 'Enter a password 6+ chars long' : null,
-                  onChanged: (value) {
-                    password = value;
-                  },
-                  decoration: kTextFieldDecoration.copyWith(
-                    hintText: 'Enter your password',
+                  TextFormField(
+                    textAlign: TextAlign.center,
+                    validator: (val) =>
+                        val.length < 6 ? 'Enter an email' : null,
+                    onChanged: (value) {
+                      email = value;
+                    },
+                    decoration: kTextFieldDecoration.copyWith(
+                      hintText: 'Enter your email',
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 10.0,
-                ),
-                TextFormField(
-                  obscureText: true,
-                  textAlign: TextAlign.center,
-                  validator: (val) =>
-                      val.length < 6 ? 'Enter a password 6+ chars long' : null,
-                  onChanged: (value) {
-                    samePassword = value;
-                  },
-                  decoration: kTextFieldDecoration.copyWith(
-                    hintText: 'Re-enter the password',
+                  SizedBox(
+                    height: 10.0,
                   ),
-                ),
-                SizedBox(
-                  height: 10.0,
-                ),
-                RoundedButton(
-                  colour: Colors.deepOrange[300],
-                  title: 'Register',
-                  onPressed: () async {
-                    if (_formKey.currentState.validate() &&
-                        samePassword == password) {
-                      dynamic result = await _auth.registerCustomerInfo(
-                          email.trim(),
-                          password,
-                          name,
-                          phoneNum,
-                          birthdate,
-                          gender,
-                          address,
-                          city,
-                          state,
-                          postcode);
-                      if (result == null) {
-                        setState(() {
-                          error = 'Please supply valid email';
-                        });
+                  TextFormField(
+                    textAlign: TextAlign.center,
+                    validator: (val) =>
+                        val.length < 10 ? 'Enter a phone number' : null,
+                    onChanged: (value) {
+                      phoneNum = value;
+                    },
+                    decoration: kTextFieldDecoration.copyWith(
+                      hintText: 'Enter your phone number',
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  TextFormField(
+                    obscureText: true,
+                    textAlign: TextAlign.center,
+                    validator: (val) => val.length < 6
+                        ? 'Enter a password 6+ chars long'
+                        : null,
+                    onChanged: (value) {
+                      password = value;
+                    },
+                    decoration: kTextFieldDecoration.copyWith(
+                      hintText: 'Enter your password',
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  TextFormField(
+                    obscureText: true,
+                    textAlign: TextAlign.center,
+                    validator: (val) => val.length < 6
+                        ? 'Enter a password 6+ chars long'
+                        : null,
+                    onChanged: (value) {
+                      samePassword = value;
+                    },
+                    decoration: kTextFieldDecoration.copyWith(
+                      hintText: 'Re-enter the password',
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  RoundedButton(
+                    colour: Colors.deepOrange[300],
+                    title: 'Register',
+                    onPressed: () async {
+                      if (_formKey.currentState.validate() &&
+                          samePassword == password) {
+                        dynamic result = await _auth.registerCustomerInfo(
+                            email.trim(),
+                            password,
+                            name,
+                            phoneNum,
+                            birthdate,
+                            gender,
+                            address,
+                            city,
+                            state,
+                            postcode);
+                        if (result == null) {
+                          setState(() {
+                            error = 'Please supply valid email';
+                          });
+                        } else {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Wrapper(),
+                            ),
+                          );
+                        }
                       } else {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Wrapper(),
-                          ),
-                        );
+                        setState(() {
+                          error = 'Password is not match';
+                        });
                       }
-                    } else {
-                      setState(() {
-                        error = 'Password is not match';
-                      });
-                    }
-                  },
-                ),
-                SizedBox(height: 12.0),
-                Text(
-                  error,
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontSize: 14.0,
+                    },
                   ),
-                )
-              ],
+                  SizedBox(height: 12.0),
+                  Text(
+                    error,
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 14.0,
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),

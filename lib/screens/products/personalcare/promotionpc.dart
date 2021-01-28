@@ -58,12 +58,13 @@ class _PromotionpcListSate extends State<PromotionpcList> {
               );
             },
           );
+
           return Scaffold(
             backgroundColor: Colors.deepOrange[100],
             appBar: AppBar(
               title: Text('Promotion'),
             ),
-            body: gridView,
+            body: SingleChildScrollView(child: gridView),
           );
         }
       },

@@ -22,6 +22,7 @@ dependencies:
   # flutter_svg: ^0.17.4
   stripe_payment: ^1.0.8
   http: ^0.12.2
+  # flutter_launcher_icons: "^0.8.0"
   flutter_beacon: ^0.3.0
   # flutter_blue: ^0.6.3+1
   flutter_bluetooth_serial: ^0.2.2
@@ -29,10 +30,20 @@ dependencies:
   flutter_credit_card: ^0.1.4
   # http: ^0.11.3+17
   progress_dialog: ^1.2.2
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  
+  # flutter_launcher_name: "^0.0.1"
+   
+  
+  # flutter_icons:
+  #   android: tue
+  #   ios: true
+  #   image_path: "assets/images/psak.png"
+
   
 
 flutter:

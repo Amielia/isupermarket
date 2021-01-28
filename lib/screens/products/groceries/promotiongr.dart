@@ -75,7 +75,7 @@ class _PromotiongrListSate extends State<PromotiongrList> {
             appBar: AppBar(
               title: Text('Promotion'),
             ),
-            body: gridView,
+            body: SingleChildScrollView(child: gridView),
           );
         }
       },
